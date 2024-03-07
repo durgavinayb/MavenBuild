@@ -8,8 +8,14 @@ on:
 
 jobs:
   build:
-    uses: durgavinayb/githubWorkflows/.github/workflows/maven.yml@main
+    uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/maven.yml@main
+    with:
+      build-script: pom.xml
 
   deploy:
     needs: build
-    uses: durgavinayb/githubWorkflows/.github/workflows/tomcat.yml@main
+    uses: anujdevopslearn/GithubActionsWorkflows/.github/workflows/tomcat.yml@main
+    secrets:
+       host: ${{ secrets.DC_HOST }}
+       user: ${{ secrets.DC_USER }}
+       password: ${{ secrets.DC_KEY }}
